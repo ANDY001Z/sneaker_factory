@@ -17,7 +17,9 @@ services:
 
   # 2. Servidor Backend (PHP-FPM)
   backend:
-    image: php:8.2-fpm-alpine
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: sneaker_backend
     volumes:
       - ./backend:/var/www/html
