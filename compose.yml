@@ -9,7 +9,6 @@ services:
       - "${PORT:-8080}:80"
     volumes:
       - ./backend:/var/www/html
-      - ./frontend:/var/www/html/frontend 
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       backend:
@@ -23,6 +22,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: sneaker_backend
+    environment:
+      # Le pasamos las credenciales al contenedor PHP
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./backend:/var/www/html
     networks:
@@ -43,11 +49,9 @@ services:
     networks:
       - backend_net
 
-# Redes aisladas (la base de datos no se expone hacia afuera)
 networks:
   frontend_net:
   backend_net:
 
-# Volumen persistente para la base de datos
 volumes:
   postgres_data:

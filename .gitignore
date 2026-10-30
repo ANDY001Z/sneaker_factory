@@ -1,2 +1,4 @@
 .env
 .DS_Store
+# Por si más adelante añadiéramos PHPUnit para tests
+/backend/vendor/ 
