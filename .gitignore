@@ -1,2 +1,5 @@
 .env
 .DS_Store
+
+# Ignorar volcados de copias de seguridad
+backups/*.sql
