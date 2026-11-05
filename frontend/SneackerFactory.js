@@ -3,9 +3,9 @@
 // ---------- Datos ----------
 const productos = [
   { id: "urban",  nombre: "Urban Runner X",  precio: 129.99 },
-  { id: "retro",  nombre: "Retro High '85",  precio: 149.9 },
+  { id: "retro",  nombre: "Retro High '85",  precio: 149.90 },
   { id: "street", nombre: "Street Boost",    precio: 119 },
-  { id: "air",    nombre: "Air Classic Pro", precio: 179.5 },
+  { id: "air",    nombre: "Air Classic Pro", precio: 179.50 },
 ];
 
 const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
