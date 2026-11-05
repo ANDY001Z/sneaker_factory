@@ -1,5 +1,3 @@
-#Comprueba si el backend y la base de datos están funcionando correctamente y hay conexion entre ellos. Devuelve un JSON con el estado de los servicios.
-
 <?php
 header('Content-Type: application/json');
 

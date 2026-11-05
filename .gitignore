@@ -6,3 +6,7 @@
 
 # Ignorar volcados de copias de seguridad
 backups/*.sql
+
+# Certificados y llaves SSL/TLS
+*.key
+*.crt
