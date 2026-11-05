@@ -65,7 +65,7 @@
                         <img src="https://via.placeholder.com/300x200" alt="Zapatilla Urban Runner X">
                     </figure>
                     <h3></h3>
-                    <p class="precio">120 €</p>
+                    <p class="precio">€</p>
                     <a href="#reservas" class="btn-sm">Reservar</a>
                 </article>
 
@@ -74,7 +74,7 @@
                         <img src="https://via.placeholder.com/300x200" alt="Zapatilla Retro High '85">
                     </figure>
                     <h3></h3>
-                    <p class="precio">150 €</p>
+                    <p class="precio">€</p>
                     <a href="#reservas" class="btn-sm">Reservar</a>
                 </article>
 
@@ -83,7 +83,7 @@
                         <img src="https://via.placeholder.com/300x200" alt="Zapatilla Street Boost">
                     </figure>
                     <h3></h3>
-                    <p class="precio">95 €</p>
+                    <p class="precio">€</p>
                     <a href="#reservas" class="btn-sm">Reservar</a>
                 </article>
 
@@ -92,10 +92,44 @@
                         <img src="https://via.placeholder.com/300x200" alt="Zapatilla Air Classic Pro">
                     </figure>
                     <h3></h3>
-                    <p class="precio">135 €</p>
+                    <p class="precio">€</p>
                     <a href="#reservas" class="btn-sm">Reservar</a>
                 </article>
             </div>
+        </section>
+
+        <section id="reservas" class="seccion">
+            <h2>Consultas y Reservas</h2>
+            <p class="subtitulo">Déjanos tu mensaje o reserva tu par antes de que vuelen.</p>
+
+            <form class="formulario">
+                <div class="campo">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                
+                <div class="campo">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+
+                <div class="campo">
+                    <label for="modelo">Selecciona Modelo de zapatillas:</label>
+                    <select id="modelo" name="modelo">
+                        <option value="urban"></option>
+                        <option value="retro"></option>
+                        <option value="street"></option>
+                        <option value="air"></option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="mensaje">Consulta o Detalles de Reserva:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Indica talla o cualquier duda..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Enviar Solicitud</button>
+            </form>
         </section>
     </main>
 </body>
