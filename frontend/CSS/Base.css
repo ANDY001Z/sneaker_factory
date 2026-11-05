@@ -7,3 +7,29 @@
     --color-subtexto: #666666;
     --fuente: Arial, Helvetica, sans-serif;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+body {
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+.seccion {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.subtitulo {
+    color: var(--color-subtexto);
+    margin-bottom: 30px;
+}
+
+.fondo-gris {
+    background-color: var(--color-gris-claro);
+}
