@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -15,14 +15,14 @@
 
     <header class="header">
         <div class="logo">
-            <h1>Sneaker <span>Factory</span></h1>
+            <h1><a href="index.html">Sneaker <span>Factory</span></a></h1>
         </div>
         <nav class="nav">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#reservas">Reservas y Consultas</a></li>
+                <li><a href="reservas.html">Reservas y Consultas</a></li>
             </ul>
         </nav>
     </header>
@@ -31,9 +31,12 @@
 
         <section id="inicio" class="hero">
             <div class="hero-texto">
-                <h2>El Arte de las Zapatillas Exclusivas</h2>
+                <h2>El Arte de las <span>Zapatillas Exclusivas</span></h2>
                 <p>Diseño, comodidad y la cultura sneaker al mejor precio.</p>
-                <a href="#catalogo" class="btn">Ver Catálogo</a>
+                <div class="hero-botones">
+                    <a href="#catalogo" class="btn">Ver Catálogo</a>
+                    <a href="reservas.html" class="btn btn-outline">Hacer Reserva</a>
+                </div>
             </div>
         </section>
 
@@ -66,75 +69,42 @@
             <div class="grid-catalogo">
                 <article class="producto">
                     <figure>
-                        <img src="https://via.placeholder.com/300x200" alt="Zapatilla Urban Runner X">
+                        <img src="https://placehold.co/300x200?text=Urban+Runner+X" alt="Zapatilla Urban Runner X">
                     </figure>
                     <h3>Urban Runner X</h3>
-                    <p class="precio">129.99€</p>
-                    <a href="#reservas" class="btn-sm">Reservar</a>
+                    <p class="precio">129,99 €</p>
+                    <a href="reservas.html?modelo=urban" class="btn-sm">Reservar</a>
                 </article>
 
                 <article class="producto">
                     <figure>
-                        <img src="https://via.placeholder.com/300x200" alt="Zapatilla Retro High '85">
+                        <img src="https://placehold.co/300x200?text=Retro+High+'85" alt="Zapatilla Retro High '85">
                     </figure>
                     <h3>Retro High '85</h3>
-                    <p class="precio">149.90€</p>
-                    <a href="#reservas" class="btn-sm">Reservar</a>
+                    <p class="precio">149,90 €</p>
+                    <a href="reservas.html?modelo=retro" class="btn-sm">Reservar</a>
                 </article>
 
                 <article class="producto">
                     <figure>
-                        <img src="https://via.placeholder.com/300x200" alt="Zapatilla Street Boost">
+                        <img src="https://placehold.co/300x200?text=Street+Boost" alt="Zapatilla Street Boost">
                     </figure>
                     <h3>Street Boost</h3>
-                    <p class="precio">119€</p>
-                    <a href="#reservas" class="btn-sm">Reservar</a>
+                    <p class="precio">119,00 €</p>
+                    <a href="reservas.html?modelo=street" class="btn-sm">Reservar</a>
                 </article>
 
                 <article class="producto">
                     <figure>
-                        <img src="https://via.placeholder.com/300x200" alt="Zapatilla Air Classic Pro">
+                        <img src="https://placehold.co/300x200?text=Air+Classic+Pro" alt="Zapatilla Air Classic Pro">
                     </figure>
                     <h3>Air Classic Pro</h3>
-                    <p class="precio">179.50€</p>
-                    <a href="#reservas" class="btn-sm">Reservar</a>
+                    <p class="precio">179,50 €</p>
+                    <a href="reservas.html?modelo=air" class="btn-sm">Reservar</a>
                 </article>
             </div>
         </section>
 
-        <section id="reservas" class="seccion">
-            <h2>Consultas y Reservas</h2>
-            <p class="subtitulo">Déjanos tu mensaje o reserva tu par antes de que vuelen.</p>
-
-            <form class="formulario">
-                <div class="campo">
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
-                </div>
-                
-                <div class="campo">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
-                </div>
-
-                <div class="campo">
-                    <label for="modelo">Selecciona Modelo de zapatillas:</label>
-                    <select id="modelo" name="modelo">
-                        <option value="urban"></option>
-                        <option value="retro"></option>
-                        <option value="street"></option>
-                        <option value="air"></option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="mensaje">Consulta o Detalles de Reserva:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Indica talla o cualquier duda..."></textarea>
-                </div>
-
-                <button type="submit" class="btn">Enviar Solicitud</button>
-            </form>
-        </section>
     </main>
 
     <footer>
