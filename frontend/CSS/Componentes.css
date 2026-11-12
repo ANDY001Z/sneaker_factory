@@ -1,0 +1,79 @@
+.btn {
+    display: inline-block;
+    background-color: var(--color-principal);
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background-color: #c12a36;
+}
+
+.btn-sm {
+    display: inline-block;
+    background-color: var(--color-oscuro);
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.btn-sm:hover {
+    background-color: var(--color-principal);
+}
+
+.tarjeta-nosotros {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+}
+
+.producto {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-principal);
+    margin: 10px 0;
+}
+
+.formulario {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input, .campo select, .campo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
