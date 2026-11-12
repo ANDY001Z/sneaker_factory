@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Reservas y Consultas</title>
+    <link rel="stylesheet" href="CSS/Base.css">
+    <link rel="stylesheet" href="CSS/Componentes.css">
+    <link rel="stylesheet" href="CSS/layout.css">
+    <link rel="stylesheet" href="CSS/Responvise.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h1><a href="index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#nosotros">Nosotros</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="reservas.html" class="activo">Reservas y Consultas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <div class="hero-texto">
+                <h2>Consultas y <span>Reservas</span></h2>
+                <p>Asegura tu par antes de que se agote o pregúntanos cualquier duda sobre stock y tallas.</p>
+            </div>
+        </section>
+
+        <section id="reservas" class="seccion fondo-gris">
+            <div class="contenedor-reservas">
+
+                <article class="tarjeta-formulario">
+                    <h3>Datos de tu solicitud</h3>
+                    <p class="subtitulo-form">Rellena los datos y te responderemos en menos de 24 horas.</p>
+
+                    <form class="formulario">
+                        <div class="campo">
+                            <label for="nombre">Nombre Completo:</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+
+                        <div class="campo">
+                            <label for="modelo">Modelo de Zapatillas:</label>
+                            <select id="modelo" name="modelo">
+                                <option value="urban">Urban Runner X — 129,99 €</option>
+                                <option value="retro">Retro High '85 — 149,90 €</option>
+                                <option value="street">Street Boost — 119,00 €</option>
+                                <option value="air">Air Classic Pro — 179,50 €</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="talla">Talla (EU):</label>
+                            <select id="talla" name="talla">
+                                <option value="39">39 EU</option>
+                                <option value="40">40 EU</option>
+                                <option value="41">41 EU</option>
+                                <option value="42" selected>42 EU</option>
+                                <option value="43">43 EU</option>
+                                <option value="44">44 EU</option>
+                                <option value="45">45 EU</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="mensaje">Consulta o Detalles de Reserva:</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿Tienes alguna duda sobre el envío o el modelo?"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-bloque">Confirmar Solicitud</button>
+                    </form>
+                </article>
+
+                <aside class="info-reserva">
+                    <h3>¿Cómo funciona?</h3>
+                    <ul class="pasos-reserva">
+                        <li>
+                            <strong>1. Elige tu par y talla</strong>
+                            <span>Selecciona el modelo que buscas en el formulario.</span>
+                        </li>
+                        <li>
+                            <strong>2. Confirmamos disponibilidad</strong>
+                            <span>Revisamos nuestro almacén y te escribimos al correo.</span>
+                        </li>
+                        <li>
+                            <strong>3. Recogida o envío 24/48h</strong>
+                            <span>Sin compromiso de pago hasta confirmar tu talla.</span>
+                        </li>
+                    </ul>
+
+                    <div class="caja-contacto">
+                        <p><strong>Horario de tienda:</strong></p>
+                        <p>Lunes a Sábado: 10:00 – 20:30</p>
+                        <a href="index.html#catalogo" class="btn-sm">Volver al Catálogo</a>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
+    </footer>
+    <script src="SneackerFactory.js" defer></script>
+</body>
+
+</html>
