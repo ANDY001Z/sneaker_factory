@@ -8,6 +8,16 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 3px solid var(--color-principal);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.logo h1 a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
 }
 
 .logo h1 span {
@@ -17,33 +27,79 @@
 .nav ul {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 24px;
 }
 
 .nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav a.activo {
     color: var(--color-principal);
+    border-bottom-color: var(--color-principal);
 }
 
 .hero {
-    background-color: var(--color-secundario);
+    background: radial-gradient(circle at top right, #3a1518 0%, #181818 55%, #111111 100%);
     color: #fff;
-    height: 350px;
+    min-height: 410px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
+    border-bottom: 1px solid #2c2c2c;
 }
 
+.hero-pequeno {
+    min-height: 240px;
+    padding: 30px 20px;
+}
+
+.hero-texto {
+    max-width: 720px;
+    animation: aparecerHero 0.7s ease-out;
+}
+
+
 .hero h2 {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.hero h2 span {
+    color: var(--color-principal);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #cccccc;
     margin-bottom: 10px;
+}
+
+.hero-botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+@keyframes aparecerHero {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .flex-nosotros {
@@ -58,6 +114,15 @@
     gap: 20px;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.contenedor-reservas {
+    display: flex;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: flex-start;
+    text-align: left;
 }
 
 footer {

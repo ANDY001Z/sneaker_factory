@@ -23,4 +23,13 @@
     .grid-catalogo {
         grid-template-columns: 1fr;
     }
+
+    .contenedor-reservas {
+        flex-direction: column;
+    }
+
+    .tarjeta-formulario,
+    .info-reserva {
+        width: 100%;
+    }
 }
