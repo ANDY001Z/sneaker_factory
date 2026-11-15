@@ -104,6 +104,40 @@
                 <div style="max-width: 1100px; margin: 0 auto 15px auto; text-align: right;">
                     <button type="button" id="btn-nuevo-producto" class="btn">+ Nuevo Modelo (Solo Admin)</button>
                 </div>
+
+                <!-- FORMULARIO DESPLEGABLE PARA CREAR MODELO (SOLO ADMIN) -->
+                <article id="caja-nuevo-producto" class="barra-filtros oculto" style="margin-bottom: 20px;">
+                    <form id="form-nuevo-producto" style="display: flex; flex-wrap: wrap; gap: 12px; width: 100%; align-items: flex-end;">
+                        <div class="filtro-grupo">
+                            <label for="np-nombre">Nombre del modelo</label>
+                            <input type="text" id="np-nombre" required placeholder="Ej: Air Pulse Pro">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="np-categoria">Categoría</label>
+                            <input type="text" id="np-categoria" required placeholder="Ej: Running / Urban">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="np-color">Color principal</label>
+                            <input type="text" id="np-color" required placeholder="Ej: Blanco / Rojo">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="np-precio">Precio (€)</label>
+                            <input type="number" id="np-precio" step="0.01" min="1" required placeholder="119.95">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="np-stock">Stock inicial</label>
+                            <input type="number" id="np-stock" min="0" required value="10">
+                        </div>
+                        <div class="filtro-grupo">
+                            <label for="np-imagen">URL Imagen (opcional)</label>
+                            <input type="url" id="np-imagen" placeholder="https://...">
+                        </div>
+                        <div class="filtro-acciones">
+                            <button type="submit" class="btn">Guardar Modelo</button>
+                        </div>
+                    </form>
+                </article>
+
                 <article class="contenedor-tabla">
                     <table class="tabla-reservas">
                         <thead>
@@ -193,6 +227,7 @@
         <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
     </footer>
 
+    <script src="../js/api.js" defer></script>
     <script src="../js/panel.js" defer></script>
 </body>
 

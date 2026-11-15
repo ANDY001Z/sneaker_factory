@@ -16,10 +16,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const tbodyProductos = document.getElementById("cuerpo-tabla-productos");
   const tbodyAuditoria = document.getElementById("cuerpo-tabla-auditoria");
 
-  // Ocultar botón de crear producto si no es admin
+  // Control del formulario Nuevo Modelo (Solo Admin)
   const btnNuevoProducto = document.getElementById("btn-nuevo-producto");
-  if (btnNuevoProducto && usuario.rol !== "admin") {
-    btnNuevoProducto.style.display = "none";
+  const cajaNuevoProducto = document.getElementById("caja-nuevo-producto");
+  const formNuevoProducto = document.getElementById("form-nuevo-producto");
+
+  if (btnNuevoProducto) {
+    if (usuario.rol !== "admin") {
+      btnNuevoProducto.style.display = "none";
+    } else {
+      btnNuevoProducto.addEventListener("click", () => {
+        cajaNuevoProducto.classList.toggle("oculto");
+      });
+    }
+  }
+
+  if (formNuevoProducto) {
+    formNuevoProducto.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nuevoModelo = {
+        nombre: document.getElementById("np-nombre").value.trim(),
+        categoria: document.getElementById("np-categoria").value.trim(),
+        color: document.getElementById("np-color").value.trim(),
+        precio: Number(document.getElementById("np-precio").value),
+        stock: Number(document.getElementById("np-stock").value),
+        imagen: document.getElementById("np-imagen").value.trim() || null,
+      };
+
+      try {
+        await Api.post("/productos", nuevoModelo);
+        alert("Modelo creado correctamente.");
+        formNuevoProducto.reset();
+        cajaNuevoProducto.classList.add("oculto");
+        cargarProductosPanel();
+        cargarKPIs();
+        cargarAuditoria();
+      } catch (err) {
+        alert(`Error al crear modelo: ${err.message}`);
+      }
+    });
   }
 
   // Navegación entre las 4 pestañas del panel
