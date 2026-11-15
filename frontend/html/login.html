@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Acceso y Registro</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/reservas.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><a href="../index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="../index.html#inicio">Inicio</a></li>
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="pedidos.html">Hacer Pedido</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <div class="hero-texto">
+                <h2>Acceso a <span>Sneaker Factory</span></h2>
+                <p>Inicia sesión con tu cuenta o regístrate para tramitar y seguir tus pedidos.</p>
+            </div>
+        </section>
+
+        <section class="seccion fondo-gris">
+            <div id="aviso-auth" class="aviso" hidden></div>
+
+            <div class="contenedor-reservas">
+                <!-- INICIAR SESIÓN -->
+                <article class="tarjeta-formulario" style="flex: 1;">
+                    <h3>Iniciar Sesión</h3>
+                    <p class="subtitulo-form">Accede como cliente, empleado de almacén o administrador.</p>
+                    <form id="form-login" class="formulario">
+                        <div class="campo">
+                            <label for="login-email">Correo electrónico:</label>
+                            <input type="email" id="login-email" name="email" required placeholder="usuario@sneakerfactory.es">
+                        </div>
+                        <div class="campo">
+                            <label for="login-password">Contraseña:</label>
+                            <input type="password" id="login-password" name="password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-bloque">Entrar</button>
+                    </form>
+                </article>
+
+                <!-- REGISTRO DE CLIENTE -->
+                <article class="tarjeta-formulario" style="flex: 1;">
+                    <h3>Crear Cuenta de Cliente</h3>
+                    <p class="subtitulo-form">Regístrate gratis para hacer pedidos estándar o personalizados.</p>
+                    <form id="form-registro" class="formulario">
+                        <div class="campo">
+                            <label for="reg-nombre">Nombre completo:</label>
+                            <input type="text" id="reg-nombre" name="nombre" required placeholder="Tu nombre y apellidos">
+                        </div>
+                        <div class="campo">
+                            <label for="reg-email">Correo electrónico:</label>
+                            <input type="email" id="reg-email" name="email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="campo">
+                            <label for="reg-password">Contraseña:</label>
+                            <input type="password" id="reg-password" name="password" required minlength="6" placeholder="Mínimo 6 caracteres">
+                        </div>
+                        <button type="submit" class="btn btn-bloque">Registrarme</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../js/auth.js" defer></script>
+</body>
+
+</html>
