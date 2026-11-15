@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Panel de Gestión</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/panel.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h1><a href="../index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="../index.html#inicio">Inicio</a></li>
+                <li><a href="../index.html#nosotros">Nosotros</a></li>
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="seguimiento.html">Seguimiento</a></li>
+                <li><a href="panel.html" class="activo">Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <header class="hero-texto">
+                <h2>Gestión de <span>Reservas</span></h2>
+                <p>Panel de administración interno para controlar el estado de los pedidos y el stock.</p>
+            </header>
+        </section>
+
+        <section id="panel-gestion" class="seccion fondo-gris">
+            <header>
+                <h2>Listado Operativo</h2>
+                <p class="subtitulo">Cambia el estado a "Cancelada" para liberar el stock automáticamente.</p>
+            </header>
+
+            <!-- Filtro semántico -->
+            <form id="filtro-panel" class="formulario-filtro">
+                <fieldset>
+                    <legend>Filtrar por estado</legend>
+                    <label for="filtro-estado">Estado:</label>
+                    <select id="filtro-estado" name="estado">
+                        <option value="">Todas las reservas</option>
+                        <option value="pendiente">Pendientes</option>
+                        <option value="confirmada">Confirmadas</option>
+                        <option value="cancelada">Canceladas</option>
+                    </select>
+                </fieldset>
+            </form>
+
+            <article class="contenedor-tabla">
+                <table class="tabla-reservas">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Cliente</th>
+                            <th>Producto</th>
+                            <th>Talla</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-reservas">
+                        <!-- Las filas se generarán aquí con JavaScript -->
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
+    </footer>
+
+    <!-- Modal personalizado para para cancelar reserva -->
+    <!-- MODAL PERSONALIZADO PARA CANCELAR RESERVA -->
+    <div id="modal-confirmacion" class="modal-overlay oculto">
+        <article class="modal-contenido">
+            <h3>Confirmar Cancelación</h3>
+            <p>¿Estás seguro de que deseas cancelar esta reserva? Se restituirá el stock del producto de forma automática.</p>
+            <div class="modal-botones">
+                <button id="btn-cerrar-modal" class="btn-accion btn-volver-modal">Volver</button>
+                <button id="btn-confirmar-modal" class="btn-accion btn-cancelar">Cancelar reserva</button>
+            </div>
+        </article>
+    </div>
+
+    <script src="../js/panel.js" defer></script>
+</body>
+
+</html>

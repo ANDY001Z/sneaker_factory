@@ -1,9 +1,15 @@
+/* TABLETA (hasta 1024px): Catálogo en 2 columnas */
 @media (max-width: 1024px) {
     .grid-catalogo {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .filtro-grupo {
+        flex: 1 1 calc(50% - 15px);
+    }
 }
 
+/* MÓVIL (hasta 768px): Catálogo en 1 columna y filtros apilados */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -16,8 +22,26 @@
         gap: 10px;
     }
 
+    .hero h2 {
+        font-size: 2rem;
+    }
+
     .flex-nosotros {
         flex-direction: column;
+    }
+
+    .barra-filtros {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtro-grupo {
+        flex: 1 1 100%;
+    }
+
+    .filtro-acciones,
+    .btn-limpiar {
+        width: 100%;
     }
 
     .grid-catalogo {

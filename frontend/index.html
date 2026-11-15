@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneaker Factory</title>
-    <link rel="stylesheet" href="CSS/Base.css">
-    <link rel="stylesheet" href="CSS/Componentes.css">
-    <link rel="stylesheet" href="CSS/layout.css">
-    <link rel="stylesheet" href="CSS/Responvise.css">
+    <title>Sneaker Factory | Tienda Oficial de Zapatillas</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -19,98 +19,120 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#inicio" class="activo">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="reservas.html">Reservas y Consultas</a></li>
+                <li><a href="html/reservas.html">Reservas</a></li>
+                <li><a href="html/seguimiento.html">Seguimiento</a></li>
+                <li><a href="html/panel.html">Panel</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-
+        <!-- HERO / PORTADA -->
         <section id="inicio" class="hero">
             <div class="hero-texto">
-                <h2>El Arte de las <span>Zapatillas Exclusivas</span></h2>
-                <p>Diseño, comodidad y la cultura sneaker al mejor precio.</p>
+                <h2>Pisa fuerte con <span>Sneaker Factory</span></h2>
+                <p>Zapatillas exclusivas, ediciones limitadas y diseño urbano para destacar en cada paso.</p>
                 <div class="hero-botones">
-                    <a href="#catalogo" class="btn">Ver Catálogo</a>
-                    <a href="reservas.html" class="btn btn-outline">Hacer Reserva</a>
+                    <a href="#catalogo" class="btn">Explorar Catálogo</a>
+                    <a href="html/reservas.html" class="btn btn-outline">Hacer una Reserva</a>
                 </div>
             </div>
         </section>
 
+        <!-- SOBRE NOSOTROS -->
         <section id="nosotros" class="seccion">
-            <h2>Sobre Sneaker Factory</h2>
-            <p class="subtitulo">Conoce quiénes somos y qué nos mueve.</p>
-
+            <h2>Sobre Nosotros</h2>
+            <p class="subtitulo">Pasión por las zapatillas desde 2020.</p>
             <div class="flex-nosotros">
                 <article class="tarjeta-nosotros">
-                    <h3>Calidad Premium</h3>
-                    <p>Trabajamos solo con los mejores materiales e importaciones garantizadas.</p>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Trabajamos con los mejores materiales y los modelos más exclusivos del mercado.</p>
                 </article>
-
                 <article class="tarjeta-nosotros">
                     <h3>Ediciones Limitadas</h3>
-                    <p>Consigue los pares más codiciados antes de que se agoten en el mercado.</p>
+                    <p>Traemos pares únicos para que encuentres ese modelo que no tiene nadie más.</p>
                 </article>
-
                 <article class="tarjeta-nosotros">
-                    <h3>Atención Única</h3>
-                    <p>Te asesoramos y gestionamos la reserva de tu modelo favorito.</p>
+                    <h3>Atención Cercana</h3>
+                    <p>Resolvemos todas tus dudas sobre tallas y modelos antes de hacer tu reserva.</p>
                 </article>
             </div>
         </section>
 
+        <!-- CATÁLOGO DINÁMICO -->
         <section id="catalogo" class="seccion fondo-gris">
-            <h2>Catálogo de Productos</h2>
-            <p class="subtitulo">Modelos disponibles para reserva directa.</p>
+            <h2>Nuestro Catálogo</h2>
+            <p class="subtitulo">Encuentra tu par ideal filtrando por modelo, categoría, talla o precio.</p>
 
-            <div class="grid-catalogo">
-                <article class="producto">
-                    <figure>
-                        <img src="https://placehold.co/300x200?text=Urban+Runner+X" alt="Zapatilla Urban Runner X">
-                    </figure>
-                    <h3>Urban Runner X</h3>
-                    <p class="precio">129,99 €</p>
-                    <a href="reservas.html?modelo=urban" class="btn-sm">Reservar</a>
-                </article>
+            <!-- BARRA DE FILTROS UNIFICADA -->
+            <div class="barra-filtros" role="search" aria-label="Filtros del catálogo">
+                <div class="filtro-grupo">
+                    <label for="filtro-busqueda">Buscar modelo</label>
+                    <input type="search" id="filtro-busqueda" placeholder="Ej: Urban, Retro, Air...">
+                </div>
 
-                <article class="producto">
-                    <figure>
-                        <img src="https://placehold.co/300x200?text=Retro+High+'85" alt="Zapatilla Retro High '85">
-                    </figure>
-                    <h3>Retro High '85</h3>
-                    <p class="precio">149,90 €</p>
-                    <a href="reservas.html?modelo=retro" class="btn-sm">Reservar</a>
-                </article>
+                <div class="filtro-grupo">
+                    <label for="filtro-categoria">Categoría</label>
+                    <select id="filtro-categoria">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
 
-                <article class="producto">
-                    <figure>
-                        <img src="https://placehold.co/300x200?text=Street+Boost" alt="Zapatilla Street Boost">
-                    </figure>
-                    <h3>Street Boost</h3>
-                    <p class="precio">119,00 €</p>
-                    <a href="reservas.html?modelo=street" class="btn-sm">Reservar</a>
-                </article>
+                <div class="filtro-grupo">
+                    <label for="filtro-talla">Talla (EU)</label>
+                    <select id="filtro-talla">
+                        <option value="">Todas las tallas</option>
+                        <option value="39">39 EU</option>
+                        <option value="40">40 EU</option>
+                        <option value="41">41 EU</option>
+                        <option value="42">42 EU</option>
+                        <option value="43">43 EU</option>
+                        <option value="44">44 EU</option>
+                        <option value="45">45 EU</option>
+                    </select>
+                </div>
 
-                <article class="producto">
-                    <figure>
-                        <img src="https://placehold.co/300x200?text=Air+Classic+Pro" alt="Zapatilla Air Classic Pro">
-                    </figure>
-                    <h3>Air Classic Pro</h3>
-                    <p class="precio">179,50 €</p>
-                    <a href="reservas.html?modelo=air" class="btn-sm">Reservar</a>
-                </article>
+                <div class="filtro-grupo">
+                    <label for="filtro-orden">Ordenar por</label>
+                    <select id="filtro-orden">
+                        <option value="">Relevancia</option>
+                        <option value="precio-asc">Precio: menor a mayor</option>
+                        <option value="precio-desc">Precio: mayor a menor</option>
+                    </select>
+                </div>
+
+                <div class="filtro-acciones">
+                    <button type="button" id="btn-limpiar-filtros" class="btn-limpiar">Limpiar filtros</button>
+                </div>
             </div>
-        </section>
 
+            <!-- CONTADOR Y MENSAJES DE ESTADO -->
+            <div class="estado-catalogo-barra">
+                <p id="contador-resultados" class="contador-resultados">Cargando modelos...</p>
+            </div>
+
+            <!-- LOADER VISUAL -->
+            <div id="loader-catalogo" class="loader-contenedor" role="status" aria-live="polite">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Cargando zapatillas desde el almacén...</p>
+            </div>
+
+            <!-- MENSAJE DE ERROR O CATÁLOGO VACÍO -->
+            <div id="mensaje-catalogo" class="mensaje-estado oculto" role="alert"></div>
+
+            <!-- GRID OBLIGATORIO DE PRODUCTOS (se rellena desde js/catalogo.js) -->
+            <div id="grid-catalogo" class="grid-catalogo"></div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Proyecto Intermodular 2.º DAW</p>
     </footer>
-    <script src="SneackerFactory.js" defer></script>
+
+    <script src="js/catalogo.js" defer></script>
 </body>
 
 </html>

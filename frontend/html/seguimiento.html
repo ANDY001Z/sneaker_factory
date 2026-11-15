@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory - Seguimiento de reserva</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/reservas.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><a href="../index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="../index.html#inicio">Inicio</a></li>
+                <li><a href="../index.html#nosotros">Nosotros</a></li>
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="seguimiento.html" class="activo">Seguimiento</a></li>
+                <li><a href="panel.html" class="activo">Panel</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <div class="hero-texto">
+                <h2>Seguimiento de <span>tu reserva</span></h2>
+                <p>Introduce el código que recibiste al reservar y el correo que usaste.</p>
+            </div>
+        </section>
+
+        <section class="seccion fondo-gris">
+            <div class="contenedor-seguimiento">
+                <article class="tarjeta-formulario">
+                    <h3>Consulta tu reserva</h3>
+                    <p class="subtitulo-form">Solo verás la reserva si código y correo coinciden.</p>
+                    <form id="form-seguimiento" class="formulario" novalidate>
+                        <div class="campo">
+                            <label for="codigo">Código de reserva</label>
+                            <input id="codigo" name="codigo" type="text" placeholder="RES-A1B2C3" autocomplete="off">
+                            <small id="error-codigo" class="campo-error"></small>
+                        </div>
+                        <div class="campo">
+                            <label for="email">Correo electrónico</label>
+                            <input id="email" name="email" type="email" placeholder="tu@email.com" autocomplete="email">
+                            <small id="error-email" class="campo-error"></small>
+                        </div>
+                        <button id="btn-buscar" type="submit" class="btn btn-bloque">Buscar reserva</button>
+                    </form>
+                </article>
+
+                <div id="estado-busqueda" class="aviso" role="status" aria-live="polite" hidden></div>
+                <article id="resultado" class="seg-card" hidden></article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory - Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
+    </footer>
+
+    <script src="../js/seguimiento.js" defer></script>
+</body>
+
+</html>
