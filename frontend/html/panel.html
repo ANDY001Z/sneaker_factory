@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneaker Factory | Panel de Gestión</title>
-
+    <title>Sneaker Factory | Panel Interno</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/componentes.css">
@@ -22,80 +21,177 @@
         <nav class="nav">
             <ul>
                 <li><a href="../index.html#inicio">Inicio</a></li>
-                <li><a href="../index.html#nosotros">Nosotros</a></li>
                 <li><a href="../index.html#catalogo">Catálogo</a></li>
-                <li><a href="reservas.html">Reservas</a></li>
-                <li><a href="seguimiento.html">Seguimiento</a></li>
-                <li><a href="panel.html" class="activo">Panel</a></li>
+                <li><a href="pedidos.html">Hacer Pedido</a></li>
+                <li><a href="mis-pedidos.html">Mis Pedidos</a></li>
+                <li><a href="panel.html" class="activo">Panel Interno</a></li>
             </ul>
         </nav>
+        <div class="nav-usuario" id="zona-usuario">
+            <span class="usuario-badge" id="badge-rol-panel">Rol: Cargando...</span>
+        </div>
     </header>
 
     <main>
         <section class="hero hero-pequeno">
             <header class="hero-texto">
-                <h2>Gestión de <span>Reservas</span></h2>
-                <p>Panel de administración interno para controlar el estado de los pedidos y el stock.</p>
+                <h2>Panel <span>Interno</span></h2>
+                <p>Control de indicadores, pedidos, stock, informes y auditoría del sistema.</p>
             </header>
         </section>
 
         <section id="panel-gestion" class="seccion fondo-gris">
-            <header>
-                <h2>Listado Operativo</h2>
-                <p class="subtitulo">Cambia el estado a "Cancelada" para liberar el stock automáticamente.</p>
-            </header>
+            <!-- INDICADORES RESUMEN (KPIs REALES) -->
+            <div class="grid-kpi">
+                <article class="tarjeta-kpi">
+                    <h3>Pedidos por Estado</h3>
+                    <p class="kpi-valor" id="kpi-pedidos-estado">0 Pend / 0 Env</p>
+                </article>
+                <article class="tarjeta-kpi">
+                    <h3>Unidades Vendidas</h3>
+                    <p class="kpi-valor" id="kpi-unidades-vendidas">0 pares</p>
+                </article>
+                <article class="tarjeta-kpi">
+                    <h3>Modelos Bajo Stock (&lt;5)</h3>
+                    <p class="kpi-valor" id="kpi-bajo-stock" style="color: var(--color-principal);">0 modelos</p>
+                </article>
+            </div>
 
-            <!-- Filtro semántico -->
-            <form id="filtro-panel" class="formulario-filtro">
-                <fieldset>
-                    <legend>Filtrar por estado</legend>
-                    <label for="filtro-estado">Estado:</label>
-                    <select id="filtro-estado" name="estado">
-                        <option value="">Todas las reservas</option>
-                        <option value="pendiente">Pendientes</option>
-                        <option value="confirmada">Confirmadas</option>
-                        <option value="cancelada">Canceladas</option>
-                    </select>
-                </fieldset>
-            </form>
+            <!-- PESTAÑAS DEL PANEL -->
+            <div class="tabs-barra">
+                <button type="button" class="tab-btn activo" data-tab="sec-pedidos">Gestión de Pedidos</button>
+                <button type="button" class="tab-btn" data-tab="sec-productos">Productos y Stock</button>
+                <button type="button" class="tab-btn" data-tab="sec-informes">Informes y CSV/JSON</button>
+                <button type="button" class="tab-btn" data-tab="sec-auditoria">Registro Auditoría</button>
+            </div>
 
-            <article class="contenedor-tabla">
-                <table class="tabla-reservas">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Cliente</th>
-                            <th>Producto</th>
-                            <th>Talla</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpo-tabla-reservas">
-                        <!-- Las filas se generarán aquí con JavaScript -->
-                    </tbody>
-                </table>
-            </article>
+            <!-- SECCIÓN 1: GESTIÓN DE PEDIDOS -->
+            <div id="sec-pedidos" class="seccion-tab">
+                <form id="filtro-panel" class="formulario-filtro">
+                    <fieldset>
+                        <legend>Filtrar pedidos por estado</legend>
+                        <label for="filtro-estado">Estado:</label>
+                        <select id="filtro-estado" name="estado">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="preparacion">En preparación</option>
+                            <option value="enviado">Enviado</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </fieldset>
+                </form>
+
+                <article class="contenedor-tabla">
+                    <table class="tabla-reservas">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Detalle / Líneas</th>
+                                <th>Total</th>
+                                <th>Estado Actual</th>
+                                <th>Cambiar Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-pedidos"></tbody>
+                    </table>
+                </article>
+            </div>
+
+            <!-- SECCIÓN 2: GESTIÓN DE PRODUCTOS Y STOCK -->
+            <div id="sec-productos" class="seccion-tab oculto">
+                <div style="max-width: 1100px; margin: 0 auto 15px auto; text-align: right;">
+                    <button type="button" id="btn-nuevo-producto" class="btn">+ Nuevo Modelo (Solo Admin)</button>
+                </div>
+                <article class="contenedor-tabla">
+                    <table class="tabla-reservas">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Modelo</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock Total</th>
+                                <th>Actualizar Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-productos"></tbody>
+                    </table>
+                </article>
+            </div>
+
+            <!-- SECCIÓN 3: INFORMES (JOINS) Y EXPORTACIÓN/IMPORTACIÓN -->
+            <div id="sec-informes" class="seccion-tab oculto">
+                <div class="barra-filtros" style="justify-content: space-between;">
+                    <div>
+                        <h3>Exportación e Importación de Datos</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Descarga el histórico de pedidos o importa actualizaciones de stock.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="/api/pedidos/export?format=csv" class="btn">Exportar Pedidos (CSV)</a>
+                        <a href="/api/pedidos/export?format=json" class="btn btn-outline" style="color:var(--color-oscuro); border-color:var(--color-oscuro);">Exportar (JSON)</a>
+                        <label class="btn" style="cursor:pointer;">
+                            Importar CSV/JSON
+                            <input type="file" id="input-importar" accept=".csv,.json" hidden>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="contenedor-reservas" style="max-width: 1100px;">
+                    <article class="contenedor-tabla" style="flex:1;">
+                        <h3 style="margin-bottom:10px;">Informe 1: Ventas por Modelo</h3>
+                        <table class="tabla-reservas">
+                            <thead>
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>Unidades</th>
+                                    <th>Ingresos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-informe-modelos"></tbody>
+                        </table>
+                    </article>
+
+                    <article class="contenedor-tabla" style="flex:1;">
+                        <h3 style="margin-bottom:10px;">Informe 2: Top Clientes</h3>
+                        <table class="tabla-reservas">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Pedidos</th>
+                                    <th>Total Gastado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-informe-clientes"></tbody>
+                        </table>
+                    </article>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: REGISTRO DE AUDITORÍA -->
+            <div id="sec-auditoria" class="seccion-tab oculto">
+                <article class="contenedor-tabla">
+                    <table class="tabla-reservas">
+                        <thead>
+                            <tr>
+                                <th>Fecha / Hora</th>
+                                <th>Usuario</th>
+                                <th>Tipo Evento</th>
+                                <th>Entidad</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-auditoria"></tbody>
+                    </table>
+                </article>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Creado por Álvaro, Sergio, Alejandro y Andy</p>
     </footer>
-
-    <!-- Modal personalizado para para cancelar reserva -->
-    <!-- MODAL PERSONALIZADO PARA CANCELAR RESERVA -->
-    <div id="modal-confirmacion" class="modal-overlay oculto">
-        <article class="modal-contenido">
-            <h3>Confirmar Cancelación</h3>
-            <p>¿Estás seguro de que deseas cancelar esta reserva? Se restituirá el stock del producto de forma automática.</p>
-            <div class="modal-botones">
-                <button id="btn-cerrar-modal" class="btn-accion btn-volver-modal">Volver</button>
-                <button id="btn-confirmar-modal" class="btn-accion btn-cancelar">Cancelar reserva</button>
-            </div>
-        </article>
-    </div>
 
     <script src="../js/panel.js" defer></script>
 </body>

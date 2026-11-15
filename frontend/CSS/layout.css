@@ -6,6 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -47,6 +49,22 @@
     border-bottom-color: var(--color-principal);
 }
 
+/* ZONA DE USUARIO EN EL HEADER */
+.nav-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.usuario-badge {
+    font-size: 0.85rem;
+    color: #cccccc;
+    background: var(--color-secundario);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #333333;
+}
+
 /* HERO / PORTADA */
 .hero {
     background: radial-gradient(circle at top right, #3a1518 0%, #181818 55%, #111111 100%);
@@ -69,7 +87,6 @@
     max-width: 720px;
     animation: aparecerHero 0.7s ease-out;
 }
-
 
 .hero h2 {
     font-size: 2.6rem;
@@ -134,7 +151,7 @@
 .filtro-grupo {
     display: flex;
     flex-direction: column;
-    flex: 1 1 180px;
+    flex: 1 1 170px;
     gap: 6px;
 }
 
@@ -349,14 +366,137 @@
     margin: 0;
 }
 
-/* DISTRIBUCIÓN RESERVAS */
+/* DISTRIBUCIÓN FORMULARIOS, PEDIDOS Y LOGIN */
 .contenedor-reservas {
     display: flex;
     gap: 30px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     align-items: flex-start;
     text-align: left;
+}
+
+/* BLOQUE DE PERSONALIZACIÓN Y TABLA DE LÍNEAS EN PEDIDOS */
+.caja-personalizacion {
+    background-color: #fafafa;
+    border: 1px dashed #cccccc;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 16px;
+}
+
+.tabla-lineas {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+}
+
+.tabla-lineas th,
+.tabla-lineas td {
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;
+    text-align: left;
+}
+
+.tabla-lineas th {
+    background-color: var(--color-oscuro);
+    color: #ffffff;
+}
+
+/* TARJETAS KPI DEL PANEL INTERNO */
+.grid-kpi {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 30px auto;
+}
+
+.tarjeta-kpi {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-top: 4px solid var(--color-principal);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-kpi h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--color-subtexto);
+    margin-bottom: 8px;
+}
+
+.tarjeta-kpi .kpi-valor {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-oscuro);
+}
+
+/* PESTAÑAS DE NAVEGACIÓN INTERNA (PANEL Y MI CUENTA) */
+.tabs-barra {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto 25px auto;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: var(--color-oscuro);
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover,
+.tab-btn.activo {
+    background-color: var(--color-principal);
+    color: #ffffff;
+    border-color: var(--color-principal);
+}
+
+/* BADGES DE ESTADO DE PEDIDO */
+.badge-estado {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.estado-pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.estado-confirmado {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.estado-preparacion {
+    background: #e2d9f3;
+    color: #4a235a;
+}
+
+.estado-enviado {
+    background: #d4edda;
+    color: #155724;
+}
+
+.estado-cancelado {
+    background: #f8d7da;
+    color: #721c24;
 }
 
 footer {
@@ -364,4 +504,10 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-kpi {
+        grid-template-columns: 1fr;
+    }
 }
