@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Tramitar Pedido</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/reservas.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><a href="../index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="../index.html#inicio">Inicio</a></li>
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="pedidos.html" class="activo">Hacer Pedido</a></li>
+                <li><a href="mis-pedidos.html">Mis Pedidos</a></li>
+                <li><a href="panel.html">Panel Interno</a></li>
+            </ul>
+        </nav>
+        <div class="nav-usuario" id="zona-usuario">
+            <a href="login.html" class="btn">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <div class="hero-texto">
+                <h2>Configura <span>tu pedido</span></h2>
+                <p>Añade uno o varios pares, elige talla y personaliza tus zapatillas si lo deseas.</p>
+            </div>
+        </section>
+
+        <section id="pedidos" class="seccion fondo-gris">
+            <div class="contenedor-reservas">
+                <!-- FORMULARIO PARA AÑADIR LÍNEAS AL PEDIDO -->
+                <article class="tarjeta-formulario">
+                    <h3>1. Añadir zapatillas al pedido</h3>
+                    <p class="subtitulo-form">Puedes combinar distintos modelos, tallas y personalizaciones en un solo pedido.</p>
+
+                    <div id="aviso-pedido" class="aviso" role="status" aria-live="polite" hidden></div>
+
+                    <form id="form-linea-pedido" class="formulario" novalidate>
+                        <div class="campo">
+                            <label for="producto">Modelo de zapatillas:</label>
+                            <select id="producto" name="producto">
+                                <option value="">Cargando modelos...</option>
+                            </select>
+                            <small id="error-producto" class="campo-error"></small>
+                        </div>
+
+                        <div id="detalle-producto" class="detalle-producto" hidden></div>
+
+                        <fieldset class="grupo-tallas">
+                            <legend>Talla (EU):</legend>
+                            <div id="tallas" class="tallas"></div>
+                            <small id="error-talla" class="campo-error"></small>
+                            <p id="texto-stock" class="texto-stock" aria-live="polite"></p>
+                        </fieldset>
+
+                        <div class="campo">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" min="1" step="1" value="1">
+                            <small id="error-cantidad" class="campo-error"></small>
+                        </div>
+
+                        <!-- OPCIONES DE PERSONALIZACIÓN -->
+                        <div class="caja-personalizacion">
+                            <label style="display:flex; align-items:center; gap:8px; font-weight:bold; cursor:pointer;">
+                                <input type="checkbox" id="check-personalizar">
+                                Personalizar este par (+15,00 € — Ideal para clubes/equipos)
+                            </label>
+
+                            <div id="campos-personalizacion" class="oculto" style="margin-top: 12px;">
+                                <div class="campo">
+                                    <label for="color-cordones">Color de cordones / detalles:</label>
+                                    <select id="color-cordones" name="color_cordones">
+                                        <option value="estandar">Estándar de serie</option>
+                                        <option value="rojo-carmesi">Rojo Carmesí</option>
+                                        <option value="dorado">Dorado Edición Club</option>
+                                        <option value="neon">Verde Neón</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label for="texto-bordado">Texto o dorsal bordado (máx. 15 caracteres):</label>
+                                    <input type="text" id="texto-bordado" name="texto_bordado" maxlength="15" placeholder="Ej: CF MADRID #10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btn-anadir-linea" class="btn btn-bloque">+ Añadir línea al pedido</button>
+                    </form>
+                </article>
+
+                <!-- RESUMEN DE LÍNEAS Y CONFIRMACIÓN FINAL -->
+                <aside class="tarjeta-formulario" style="flex: 1.2;">
+                    <h3>2. Resumen de tu pedido</h3>
+                    <p class="subtitulo-form">Revisa las líneas antes de tramitar.</p>
+
+                    <table class="tabla-lineas">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Talla</th>
+                                <th>Extra</th>
+                                <th>Cant.</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-lineas-pedido">
+                            <tr>
+                                <td colspan="6" style="text-align:center; color:#666;">Aún no has añadido zapatillas.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="campo">
+                        <label for="notas-pedido">Observaciones de entrega / club (opcional):</label>
+                        <input type="text" id="notas-pedido" placeholder="Ej: Entrega en horario de tarde">
+                    </div>
+
+                    <p class="total-estimado">
+                        <span>Importe Total</span> <strong id="total-pedido">0,00 €</strong>
+                    </p>
+
+                    <button type="button" id="btn-confirmar-pedido" class="btn btn-bloque" disabled>Confirmar Pedido</button>
+                    <div id="confirmacion" class="confirmacion" hidden></div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Proyecto Intermodular 2.º DAW</p>
+    </footer>
+
+    <script src="../js/pedidos.js" defer></script>
+</body>
+
+</html>

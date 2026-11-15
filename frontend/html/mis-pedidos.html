@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Mi Cuenta y Pedidos</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><a href="../index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="../index.html#inicio">Inicio</a></li>
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="pedidos.html">Hacer Pedido</a></li>
+                <li><a href="mis-pedidos.html" class="activo">Mis Pedidos</a></li>
+                <li><a href="panel.html">Panel Interno</a></li>
+            </ul>
+        </nav>
+        <div class="nav-usuario" id="zona-usuario">
+            <a href="login.html" class="btn">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-pequeno">
+            <div class="hero-texto">
+                <h2>Área de <span>Cliente</span></h2>
+                <p>Consulta el estado de tus pedidos, cancélalos si aún no se han enviado o actualiza tus datos.</p>
+            </div>
+        </section>
+
+        <section class="seccion fondo-gris">
+            <div class="tabs-barra">
+                <button type="button" class="tab-btn activo" data-tab="tab-pedidos">Mis Pedidos</button>
+                <button type="button" class="tab-btn" data-tab="tab-perfil">Editar Mis Datos</button>
+            </div>
+
+            <!-- PESTAÑA 1: HISTORIAL DE PEDIDOS PROPIOS -->
+            <div id="tab-pedidos" class="contenedor-tabla" style="max-width: 1100px; margin: 0 auto;">
+                <div id="aviso-mis-pedidos" class="aviso" hidden></div>
+                <table class="tabla-reservas">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Fecha</th>
+                            <th>Líneas / Modelos</th>
+                            <th>Personalizado</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-mis-pedidos">
+                        <tr>
+                            <td colspan="7" style="text-align:center;">Cargando tus pedidos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PESTAÑA 2: EDICIÓN DE DATOS PROPIOS -->
+            <div id="tab-perfil" class="oculto" style="max-width: 550px; margin: 0 auto; text-align: left;">
+                <article class="tarjeta-formulario">
+                    <h3>Datos de mi cuenta</h3>
+                    <p class="subtitulo-form">Actualiza tu información personal o cambia tu contraseña.</p>
+                    <form id="form-perfil" class="formulario">
+                        <div class="campo">
+                            <label for="perfil-nombre">Nombre completo:</label>
+                            <input type="text" id="perfil-nombre" name="nombre" required>
+                        </div>
+                        <div class="campo">
+                            <label for="perfil-email">Correo electrónico:</label>
+                            <input type="email" id="perfil-email" name="email" required>
+                        </div>
+                        <div class="campo">
+                            <label for="perfil-direccion">Dirección de envío:</label>
+                            <input type="text" id="perfil-direccion" name="direccion" placeholder="Calle, número, ciudad...">
+                        </div>
+                        <div class="campo">
+                            <label for="perfil-password">Nueva contraseña (dejar en blanco para no cambiar):</label>
+                            <input type="password" id="perfil-password" name="password" placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-bloque">Guardar cambios</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Proyecto Intermodular 2.º DAW</p>
+    </footer>
+
+    <script src="../js/mis-pedidos.js" defer></script>
+</body>
+
+</html>
