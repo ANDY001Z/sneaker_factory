@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Comprobacion : web, healthcheck, BD y recursos. Sale con 1 si esq falla algo
 set -u
+export MSYS_NO_PATHCONV=1
+
 cd "$(dirname "$0")/.."
 [ -f .env ] && { set -a; . ./.env; set +a; }
 URL="${1:-https://localhost:8443}"
