@@ -1,49 +1,55 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Config;
 
 use PDO;
 use PDOException;
-use Exception;
+use Throwable;
 
-class Database {
+final class Database
+{
     private static ?PDO $connection = null;
 
-    // Prevenimos la instanciación directa
-    private function __construct() {}
-
-    /**
-     * Obtiene la instancia única de la conexión a la base de datos (Singleton).
-     */
-    public static function getConnection(): PDO {
+    public static function getConnection(): PDO
+    {
         if (self::$connection === null) {
+            $host = Config::require('DB_HOST');
+            $port = Config::get('DB_PORT', '5432');
+            $name = Config::require('DB_NAME');
+            $user = Config::require('DB_USER');
+            $pass = Config::require('DB_PASSWORD');
+
+            $dsn = sprintf(
+                'pgsql:host=%s;port=%s;dbname=%s;connect_timeout=5',
+                $host,
+                $port,
+                $name
+            );
+
             try {
-                // Recuperamos las variables de entorno inyectadas por Docker
-                $host = getenv('DB_HOST') ?: 'db';
-                $port = getenv('DB_PORT') ?: '5432';
-                $dbName = getenv('DB_NAME');
-                $user = getenv('DB_USER');
-                $password = getenv('DB_PASSWORD');
-
-                if (!$dbName || !$user || !$password) {
-                    throw new Exception("Faltan credenciales de base de datos en el entorno.");
-                }
-
-                $dsn = "pgsql:host=$host;port=$port;dbname=$dbName";
-                
-                self::$connection = new PDO($dsn, $user, $password, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Lanza excepciones en errores SQL
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Devuelve arrays asociativos por defecto
-                    PDO::ATTR_EMULATE_PREPARES => false, // Mayor seguridad contra Inyección SQL
+                self::$connection = new PDO($dsn, $user, $pass, [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES   => false,
                 ]);
-
             } catch (PDOException $e) {
-                // En producción, no deberíamos mostrar el mensaje real del error por seguridad
-                // error_log("Error de conexión a la BD: " . $e->getMessage());
-                throw new Exception("Error interno del servidor al conectar con la base de datos.");
+                throw new PDOException('No se pudo establecer conexión con la base de datos.', (int) $e->getCode(), $e);
             }
         }
 
         return self::$connection;
+    }
+
+    public static function ping(): bool
+    {
+        try {
+            $pdo = self::getConnection();
+            $pdo->query('SELECT 1');
+            return true;
+        } catch (Throwable) {
+            return false;
+        }
     }
 }
