@@ -56,6 +56,15 @@ function obtenerStockDisponible(producto) {
   return null;
 }
 
+function obtenerColoresTexto(producto) {
+  if (producto.color) return producto.color;
+  if (Array.isArray(producto.variantes) && producto.variantes.length) {
+    const colores = [...new Set(producto.variantes.map((v) => v.color).filter(Boolean))];
+    if (colores.length) return colores.join(", ");
+  }
+  return "Multicolor";
+}
+
 function renderizarCatalogo(listaProductos) {
   if (!gridCatalogo) return;
   gridCatalogo.innerHTML = "";
@@ -80,9 +89,12 @@ function renderizarCatalogo(listaProductos) {
     const tarjeta = document.createElement("article");
     tarjeta.className = "producto";
 
-    const imagenUrl = producto.imagen
-      ? producto.imagen
+    const rawImg = producto.imagen_url || producto.imagen;
+    const imagenUrl = rawImg
+      ? rawImg
       : `https://placehold.co/400x260/181818/ffffff?text=${encodeURIComponent(producto.nombre)}`;
+
+    const precio = Number(producto.precio_base ?? producto.precio ?? 0);
 
     const stockTotal = obtenerStockDisponible(producto);
     const hayStock = stockTotal === null || stockTotal > 0;
@@ -94,8 +106,10 @@ function renderizarCatalogo(listaProductos) {
           : "Agotado temporalmente";
 
     const tallasDisp = Array.isArray(producto.variantes)
-      ? producto.variantes.filter((v) => v.stock > 0).map((v) => v.talla).join(", ") || "Sin stock"
+      ? [...new Set(producto.variantes.filter((v) => v.stock > 0).map((v) => v.talla))].join(", ") || "Sin stock"
       : "39 - 45";
+
+    const coloresTexto = obtenerColoresTexto(producto);
 
     tarjeta.innerHTML = `
       <div>
@@ -105,12 +119,12 @@ function renderizarCatalogo(listaProductos) {
         <span class="etiqueta-categoria">${producto.categoria || "Sneakers"}</span>
         <h3>${producto.marca ? `${producto.marca} ` : ""}${producto.nombre}</h3>
         <p class="producto-desc">${producto.descripcion || "Diseño exclusivo Sneaker Factory."}</p>
-        <p class="producto-desc"><strong>Color:</strong> ${producto.color || "Multicolor"} | <strong>Tallas:</strong> ${tallasDisp}</p>
+        <p class="producto-desc"><strong>Color:</strong> ${coloresTexto} | <strong>Tallas:</strong> ${tallasDisp}</p>
       </div>
       <div>
         <p class="producto-stock ${hayStock ? "stock-ok" : "stock-agotado"}">${textoStock}</p>
         <div class="producto-pie">
-          <p class="precio">${formatearEuro.format(Number(producto.precio))}</p>
+          <p class="precio">${formatearEuro.format(precio)}</p>
           <a href="html/pedidos.html?modelo=${encodeURIComponent(producto.id)}" class="btn-sm">
             ${hayStock ? "Pedir" : "Ver"}
           </a>
@@ -151,7 +165,9 @@ function aplicarFiltrosYOrden() {
       (producto.descripcion && producto.descripcion.toLowerCase().includes(texto));
 
     const coincideCategoria = !categoria || producto.categoria === categoria;
-    const coincideColor = !color || (producto.color && producto.color.toLowerCase().includes(color));
+
+    const coloresProd = obtenerColoresTexto(producto).toLowerCase();
+    const coincideColor = !color || coloresProd.includes(color);
 
     let coincideTalla = true;
     if (talla) {
@@ -165,8 +181,11 @@ function aplicarFiltrosYOrden() {
     return coincideTexto && coincideCategoria && coincideColor && coincideTalla;
   });
 
-  if (orden === "precio-asc") filtrados.sort((a, b) => Number(a.precio) - Number(b.precio));
-  else if (orden === "precio-desc") filtrados.sort((a, b) => Number(b.precio) - Number(a.precio));
+  if (orden === "precio-asc") {
+    filtrados.sort((a, b) => Number(a.precio_base ?? a.precio ?? 0) - Number(b.precio_base ?? b.precio ?? 0));
+  } else if (orden === "precio-desc") {
+    filtrados.sort((a, b) => Number(b.precio_base ?? b.precio ?? 0) - Number(a.precio_base ?? a.precio ?? 0));
+  }
 
   paginaActual = 1;
   renderizarCatalogo(filtrados);
@@ -179,13 +198,13 @@ async function cargarProductosDesdeAPI() {
   if (contadorResultados) contadorResultados.textContent = "Conectando con el catálogo...";
 
   try {
-    const datos = await Api.get("/productos");
+    const datos = await Api.get("/modelos");
     const lista = Array.isArray(datos) ? datos : datos.productos || datos.data || [];
     productosAPI = lista.filter((p) => p.activo !== false);
     cargarCategoriasEnSelect(productosAPI);
     renderizarCatalogo(productosAPI);
   } catch (error) {
-    console.error("Error al cargar /api/productos:", error);
+    console.error("Error al cargar /api/modelos:", error);
     if (contadorResultados) contadorResultados.textContent = "Error de conexión";
     mostrarMensaje("No se pudieron cargar los productos desde la API.", "error");
   } finally {
