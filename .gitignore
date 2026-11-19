@@ -1,0 +1,17 @@
+#Evitamos que se suba .env al repositorio, ya que contiene información sensible como contraseñas y claves de API.
+.env
+
+# Evitamos que se suban archivos de sistema de macOS (añadido automaticamente)
+.DS_Store
+
+# Ignorar volcados de copias de seguridad
+backups/*.sql
+backups/*.tar.gz
+backups/*.log
+
+# Certificados y llaves SSL/TLS
+*.key
+*.crt
+
+logs/
+*.log

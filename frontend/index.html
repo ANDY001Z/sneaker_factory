@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Factory | Tienda Oficial de Zapatillas</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h1><a href="index.html">Sneaker <span>Factory</span></a></h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#inicio" class="activo">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="html/pedidos.html">Hacer Pedido</a></li>
+                <li><a href="html/mis-pedidos.html">Mis Pedidos</a></li>
+                <li id="nav-item-panel"><a href="html/panel.html">Panel Interno</a></li>
+            </ul>
+        </nav>
+        <div class="nav-usuario" id="zona-usuario">
+            <a href="html/login.html" class="btn">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO / PORTADA -->
+        <section id="inicio" class="hero">
+            <div class="hero-texto">
+                <h2>Pisa fuerte con <span>Sneaker Factory</span></h2>
+                <p>Zapatillas estándar y personalizadas para particulares, clubes y equipos.</p>
+                <div class="hero-botones">
+                    <a href="#catalogo" class="btn">Explorar Catálogo</a>
+                    <a href="html/pedidos.html" class="btn btn-outline">Configurar Pedido</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE NOSOTROS -->
+        <section id="nosotros" class="seccion">
+            <h2>Sobre Nosotros</h2>
+            <p class="subtitulo">Pasión por las zapatillas y diseño a medida desde 2020.</p>
+            <div class="flex-nosotros">
+                <article class="tarjeta-nosotros">
+                    <h3>Calidad Garantizada</h3>
+                    <p>Trabajamos con los mejores materiales y control de stock en tiempo real.</p>
+                </article>
+                <article class="tarjeta-nosotros">
+                    <h3>Personalización Clubes</h3>
+                    <p>Diseña pares únicos con colores y bordados propios para tu equipo o club.</p>
+                </article>
+                <article class="tarjeta-nosotros">
+                    <h3>Gestión Transparente</h3>
+                    <p>Sigue cada fase de tu pedido desde la confirmación hasta el envío.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO DINÁMICO -->
+        <section id="catalogo" class="seccion fondo-gris">
+            <h2>Nuestro Catálogo</h2>
+            <p class="subtitulo">Filtra por modelo, categoría, color, talla o precio.</p>
+
+            <!-- BARRA DE FILTROS UNIFICADA -->
+            <div class="barra-filtros" role="search" aria-label="Filtros del catálogo">
+                <div class="filtro-grupo">
+                    <label for="filtro-busqueda">Buscar modelo</label>
+                    <input type="search" id="filtro-busqueda" placeholder="Ej: Urban, Retro, Air...">
+                </div>
+
+                <div class="filtro-grupo">
+                    <label for="filtro-categoria">Categoría</label>
+                    <select id="filtro-categoria">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+
+                <div class="filtro-grupo">
+                    <label for="filtro-color">Color</label>
+                    <select id="filtro-color">
+                        <option value="">Todos los colores</option>
+                        <option value="blanco">Blanco</option>
+                        <option value="negro">Negro</option>
+                        <option value="rojo">Rojo</option>
+                        <option value="azul">Azul</option>
+                    </select>
+                </div>
+
+                <div class="filtro-grupo">
+                    <label for="filtro-talla">Talla (EU)</label>
+                    <select id="filtro-talla">
+                        <option value="">Todas las tallas</option>
+                        <option value="39">39 EU</option>
+                        <option value="40">40 EU</option>
+                        <option value="41">41 EU</option>
+                        <option value="42">42 EU</option>
+                        <option value="43">43 EU</option>
+                        <option value="44">44 EU</option>
+                        <option value="45">45 EU</option>
+                    </select>
+                </div>
+
+                <div class="filtro-grupo">
+                    <label for="filtro-orden">Ordenar por</label>
+                    <select id="filtro-orden">
+                        <option value="">Relevancia</option>
+                        <option value="precio-asc">Precio: menor a mayor</option>
+                        <option value="precio-desc">Precio: mayor a menor</option>
+                    </select>
+                </div>
+
+                <div class="filtro-acciones">
+                    <button type="button" id="btn-limpiar-filtros" class="btn-limpiar">Limpiar</button>
+                </div>
+            </div>
+
+            <div class="estado-catalogo-barra">
+                <p id="contador-resultados" class="contador-resultados">Cargando modelos...</p>
+            </div>
+
+            <div id="loader-catalogo" class="loader-contenedor" role="status" aria-live="polite">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Cargando zapatillas desde el almacén...</p>
+            </div>
+
+            <div id="mensaje-catalogo" class="mensaje-estado oculto" role="alert"></div>
+
+            <!-- GRID DE PRODUCTOS -->
+            <div id="grid-catalogo" class="grid-catalogo"></div>
+
+            <!-- PAGINACIÓN -->
+            <div id="paginacion-catalogo" class="tabs-barra" style="margin-top: 30px;"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sneaker Factory — Todos los derechos reservados. Proyecto Intermodular 2.º DAW</p>
+    </footer>
+
+    <script src="js/catalogo.js" defer></script>
+    <script src="js/api.js" defer></script>
+</body>
+
+</html>
