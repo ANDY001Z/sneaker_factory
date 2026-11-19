@@ -1,0 +1,2 @@
+# Forzar siempre saltos de linea Linux (LF) en scripts de Bash
+*.sh text eol=lf
