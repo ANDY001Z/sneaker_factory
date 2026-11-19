@@ -8,6 +8,7 @@ use App\Controllers\AuthController;
 use App\Controllers\CatalogController;
 use App\Controllers\HealthController;
 use App\Controllers\OrderController;
+use App\Controllers\ReportController;
 use App\Controllers\UserController;
 use App\Core\Router;
 use App\Middlewares\AuthMiddleware;
@@ -53,8 +54,15 @@ return static function (Router $router): void {
     $router->patch('/api/admin/variantes/{id}/stock', [AdminProductController::class, 'updateStock'], [$auth, $staffRoles, $csrf]);
     $router->get('/api/admin/auditoria', [AdminProductController::class, 'listAudit'], [$auth, $onlyAdmin]);
 
-    // Panel interno: gestión global de pedidos y estados
+    // Panel interno: exportación, gestión global de pedidos y estados
+    $router->get('/api/admin/pedidos/exportar', [ReportController::class, 'exportOrders'], [$auth, $staffRoles]);
     $router->get('/api/admin/pedidos', [AdminOrderController::class, 'index'], [$auth, $staffRoles]);
     $router->get('/api/admin/pedidos/{id}', [AdminOrderController::class, 'show'], [$auth, $staffRoles]);
     $router->patch('/api/admin/pedidos/{id}/estado', [AdminOrderController::class, 'updateStatus'], [$auth, $staffRoles, $csrf]);
+
+    // Panel interno: KPIs, informes de explotación e importación validada
+    $router->get('/api/admin/dashboard', [ReportController::class, 'dashboard'], [$auth, $staffRoles]);
+    $router->get('/api/admin/informes/ventas-modelos', [ReportController::class, 'salesByModel'], [$auth, $staffRoles]);
+    $router->get('/api/admin/informes/clientes', [ReportController::class, 'topCustomers'], [$auth, $onlyAdmin]);
+    $router->post('/api/admin/stock/importar', [ReportController::class, 'importStock'], [$auth, $staffRoles, $csrf]);
 };
