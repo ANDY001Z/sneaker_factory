@@ -15,8 +15,6 @@ if [ "$TARGET" = "$DB_NAME" ]; then
   echo "ATENCION: vas a SOBRESCRIBIR la base de PRODUCCION ($DB_NAME)."
   read -r -p "Escribe RESTAURAR para continuar: " ans
   [ "$ans" = "RESTAURAR" ] || { echo "Cancelado."; exit 1; }
-  echo "[INFO] Backup de seguridad previo..."
-  ./scripts/backup.sh
   psqlx -d "$TARGET" -v ON_ERROR_STOP=1 -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
 else
   echo "[INFO] Preparando base aislada '$TARGET'..."
